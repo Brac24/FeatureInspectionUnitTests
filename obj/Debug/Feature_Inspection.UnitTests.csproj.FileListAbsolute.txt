@@ -1,0 +1,14 @@
+C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\bin\Debug\Feature_Inspection.UnitTests.dll
+C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\bin\Debug\Feature_Inspection.UnitTests.pdb
+C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\bin\Debug\Feature_Inspection.exe
+C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\bin\Debug\nunit.framework.dll
+C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\bin\Debug\ObjectListView.dll
+C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\bin\Debug\DataGridViewNumericUpDownElements.dll
+C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\bin\Debug\Feature_Inspection.pdb
+C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\bin\Debug\ObjectListView.xml
+C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\bin\Debug\DataGridViewNumericUpDownElements.pdb
+C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\obj\Debug\Feature_Inspection.UnitTests.csprojResolveAssemblyReference.cache
+C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\obj\Debug\Feature_Inspection.UnitTests.dll
+C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\obj\Debug\Feature_Inspection.UnitTests.pdb
+C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\bin\Debug\Feature_Inspection.UnitTests.dll.config
+C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\bin\Debug\nunit.framework.xml
