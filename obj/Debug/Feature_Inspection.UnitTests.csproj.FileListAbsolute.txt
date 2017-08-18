@@ -12,3 +12,6 @@ C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.U
 C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\obj\Debug\Feature_Inspection.UnitTests.pdb
 C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\bin\Debug\Feature_Inspection.UnitTests.dll.config
 C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\bin\Debug\nunit.framework.xml
+C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\obj\Debug\Feature_Inspection.UnitTests.csprojResolveAssemblyReference.cache
+C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\obj\Debug\Feature_Inspection.UnitTests.dll
+C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\obj\Debug\Feature_Inspection.UnitTests.pdb
