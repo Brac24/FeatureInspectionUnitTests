@@ -4,9 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
-
-
-
+using System.Windows.Forms;
 
 namespace Feature_Inspection.UnitTests
 {
@@ -36,24 +34,32 @@ namespace Feature_Inspection.UnitTests
     [TestFixture]
     class FeatureCreationPresenterTests
     {
+        private FeatureCreationTableMock view;
+        private FeatureCreationPresenter presenter;
+        
+        [SetUp]
+        public void SetUp()
+        {
+            view = new FeatureCreationTableMock();
+
+
+            //Act
+            view.FeatureCreationTableMock_Load(new object(), new EventArgs());
+
+            presenter = view.presenter;
+        }
+
         [Test]
         public void Ctor_PassingInModelAndView_ObjectsNotNull()
         {
-            //Arrange
-            var view = new FeatureCreationTableMock();
-            var model = new FeatureCreationModelMock();
-
-            //Act
-            var presenter = new FeatureCreationPresenter(view,model);
-            
-
+                    
             //Assert
             Assert.That(presenter, Is.Not.Null);
                        
         }
 
+        
+
        
-        
-        
     }
 }
