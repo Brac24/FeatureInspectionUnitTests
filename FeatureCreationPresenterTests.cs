@@ -40,6 +40,7 @@ namespace Feature_Inspection.UnitTests
         [SetUp]
         public void SetUp()
         {
+            
             view = new FeatureCreationTableMock();
 
 
@@ -57,6 +58,37 @@ namespace Feature_Inspection.UnitTests
             Assert.That(presenter, Is.Not.Null);
                        
         }
+
+        /*
+        [TestCase(Keys.Space, true)]
+        [TestCase(Keys.X, false)]
+        [TestCase(Keys.Return, true)]
+        [TestCase(Keys.Space, true)]
+        */
+
+        //[Test]
+        public void SuppressKeyIfSpace_TypingInTextBox_ReturnTrue([Values]Keys a)
+        {
+           
+            
+            KeyEventArgs e = new KeyEventArgs(a);
+            presenter.SuppressKeyIfWhiteSpaceChar(e);
+
+            
+
+            if (char.IsWhiteSpace((char)e.KeyCode))
+            {
+                Assert.That(e.SuppressKeyPress, Is.EqualTo(true));
+            }
+            else
+                Assert.That(e.SuppressKeyPress, Is.EqualTo(false));
+            
+        }
+
+
+
+       
+
 
         
 
