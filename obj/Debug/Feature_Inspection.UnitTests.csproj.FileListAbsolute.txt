@@ -12,3 +12,7 @@ C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.U
 C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\obj\Debug\Feature_Inspection.UnitTests.pdb
 C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\bin\Debug\Feature_Inspection.UnitTests.dll.config
 C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\bin\Debug\nunit.framework.xml
+C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\bin\Debug\Castle.Core.dll
+C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\bin\Debug\Moq.dll
+C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\bin\Debug\Moq.pdb
+C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\bin\Debug\Moq.xml

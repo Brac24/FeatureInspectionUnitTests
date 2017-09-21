@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using System.Windows.Forms;
+using Moq;
 
 namespace Feature_Inspection.UnitTests
 {
@@ -34,20 +35,18 @@ namespace Feature_Inspection.UnitTests
     [TestFixture]
     class FeatureCreationPresenterTests
     {
-        private FeatureCreationTableMock view;
-        private FeatureCreationPresenter presenter;
+        private Mock<IFeatureCreationView> mockView;
+        private Mock<IFeaturesDataSource> mockModel;
+        private FeatureCreationPresenter sut;
         
         [SetUp]
         public void SetUp()
         {
-            
-            view = new FeatureCreationTableMock();
+            mockView = new Mock<IFeatureCreationView>(MockBehavior.Strict);
+            mockModel = new Mock<IFeaturesDataSource>(MockBehavior.Strict);
 
-
-            //Act
-            view.FeatureCreationTableMock_Load(new object(), new EventArgs());
-
-            presenter = view.presenter;
+            sut = new FeatureCreationPresenter(mockView.Object, mockModel.Object);
+           
         }
 
         [Test]
@@ -55,8 +54,37 @@ namespace Feature_Inspection.UnitTests
         {
                     
             //Assert
-            Assert.That(presenter, Is.Not.Null);
+            Assert.That(sut, Is.Not.Null);
                        
+        }
+
+        [Test]
+        public void Ctor_PassingInModelAndView_ModelAndViewInstantiated()
+        {
+            mockView.VerifyAll();
+            mockModel.VerifyAll();        
+        }
+
+        [Test]
+        public void checkPartNumberExists_PartExists_FocusOpBox()
+        {
+            string partNumber = "1234";
+            var view = new FeatureCreationTableMock();
+            //Testing when model returns true for a part number existing
+            mockModel.Setup(p => p.PartNumberExists(partNumber)).Returns(true);
+            mockView.Setup(p => p.OpTextBox).Returns(view.OpTextBox);
+            
+
+            sut.CheckPartNumberExists(partNumber);
+
+           
+            mockModel.VerifyAll();
+            mockView.VerifyAll();
+
+            Assert.That(view.OpTextBox.Focused, Is.True);
+
+
+
         }
 
         /*
@@ -67,21 +95,18 @@ namespace Feature_Inspection.UnitTests
         */
 
         //[Test]
-        public void SuppressKeyIfSpace_TypingInTextBox_ReturnTrue([Values]Keys a)
+        public void SuppressKeyIfSpace_TextInTextBox_ReturnTrue([Values]Keys a)
         {
-           
-            
+                      
             KeyEventArgs e = new KeyEventArgs(a);
-            presenter.SuppressKeyIfWhiteSpaceChar(e);
-
-            
+            sut.SuppressKeyIfWhiteSpaceChar(e);
 
             if (char.IsWhiteSpace((char)e.KeyCode))
             {
                 Assert.That(e.SuppressKeyPress, Is.EqualTo(true));
             }
-            else
-                Assert.That(e.SuppressKeyPress, Is.EqualTo(false));
+            //else
+              //  Assert.That(e.SuppressKeyPress, Is.EqualTo(false));
             
         }
 
