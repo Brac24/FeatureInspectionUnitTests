@@ -68,12 +68,17 @@ namespace Feature_Inspection.UnitTests
         [Test]
         public void checkPartNumberExists_PartExists_FocusOpBox()
         {
-            string partNumber = "1234";
-            var view = new FeatureCreationTableMock();
-            //Testing when model returns true for a part number existing
-            mockModel.Setup(p => p.PartNumberExists(partNumber)).Returns(true);
-            mockView.Setup(p => p.OpTextBox).Returns(view.OpTextBox);
             
+            string partNumber = "1234";
+            var opTextBox = new TextBox();
+            opTextBox.Enabled = true;
+            opTextBox.Visible = true;
+
+            
+            mockView.Setup(p => p.OpTextBox).Returns(opTextBox);
+            mockModel.Setup(x => x.PartNumberExists(partNumber)).Returns(true);
+
+            sut = new FeatureCreationPresenter(mockView.Object, mockModel.Object);
 
             sut.CheckPartNumberExists(partNumber);
 
@@ -81,9 +86,8 @@ namespace Feature_Inspection.UnitTests
             mockModel.VerifyAll();
             mockView.VerifyAll();
 
-            Assert.That(view.OpTextBox.Focused, Is.True);
-
-
+            
+           Assert.That(opTextBox.Focused, Is.True);
 
         }
 
