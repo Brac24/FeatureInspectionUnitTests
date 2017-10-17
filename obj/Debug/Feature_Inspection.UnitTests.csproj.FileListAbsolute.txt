@@ -15,3 +15,15 @@ C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.U
 C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\obj\Debug\Feature_Inspection.UnitTests.csprojResolveAssemblyReference.cache
 C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\obj\Debug\Feature_Inspection.UnitTests.dll
 C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\obj\Debug\Feature_Inspection.UnitTests.pdb
+C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\bin\Debug\Feature_Inspection.UnitTests.dll.config
+C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\bin\Debug\Feature_Inspection.UnitTests.dll
+C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\bin\Debug\Feature_Inspection.UnitTests.pdb
+C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\bin\Debug\Feature_Inspection.exe
+C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\bin\Debug\nunit.framework.dll
+C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\bin\Debug\ObjectListView.dll
+C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\bin\Debug\DataGridViewNumericUpDownElements.dll
+C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\bin\Debug\Feature_Inspection.pdb
+C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\bin\Debug\Feature_Inspection.exe.config
+C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\bin\Debug\nunit.framework.xml
+C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\bin\Debug\ObjectListView.xml
+C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\bin\Debug\DataGridViewNumericUpDownElements.pdb

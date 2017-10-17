@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using System.Windows.Forms;
+
 
 
 
@@ -40,20 +42,15 @@ namespace Feature_Inspection.UnitTests
         public void Ctor_PassingInModelAndView_ObjectsNotNull()
         {
             //Arrange
-            var view = new FeatureCreationTableMock();
+            var view = new Feature_Inspection();
             var model = new FeatureCreationModelMock();
 
             //Act
             var presenter = new FeatureCreationPresenter(view,model);
-            
 
             //Assert
             Assert.That(presenter, Is.Not.Null);
                        
-        }
-
-       
-        
-        
+        }       
     }
 }
