@@ -67,6 +67,7 @@ namespace Feature_Inspection.UnitTests
         }
 
         //[Test]
+<<<<<<< HEAD
         public void CheckEnterKeyPressed_PassWhiteSpace_ShouldSuppressKey()
         {
             bool tabPressed = false;
@@ -80,6 +81,8 @@ namespace Feature_Inspection.UnitTests
         }
         
         //[Test]
+=======
+>>>>>>> 954f984a3b14d4a72190ad94fec05e0c0820af0b
         public void checkPartNumberExists_PartExists_FocusOpBox()
         {
             
