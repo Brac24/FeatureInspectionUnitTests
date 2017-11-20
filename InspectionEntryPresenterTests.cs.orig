@@ -15,7 +15,7 @@ namespace Feature_Inspection.UnitTests
     [TestFixture]
     public class InspectionEntryPresenterTests
     {
-<<<<<<< HEAD
+
         private Mock<IInspectionView> viewMock;
         private Mock<IFeaturesDataSource> modelMock;
         private InspectionPresenter systemUnderTest;
@@ -54,27 +54,6 @@ namespace Feature_Inspection.UnitTests
 
             viewMock.VerifyAll();
             modelMock.VerifyAll();
-
-        }
-
-
-        
-        
-
-=======
-        [Test]
-        public void InspectionCtor_PassingInModelAndView_ObjectsNotNull()
-        {
-            //Arrange
-            var view = new Feature_Inspection();
-            var model = new FeatureCreationModelMock();
->>>>>>> 954f984a3b14d4a72190ad94fec05e0c0820af0b
-
-            //Act
-            var presenter = new FeatureCreationPresenter(view, model);   
-
-            //Assert
-            Assert.That(presenter, Is.Not.Null);
 
         }
     }

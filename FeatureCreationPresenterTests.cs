@@ -113,7 +113,7 @@ namespace Feature_Inspection.UnitTests
         [TestCase(Keys.Space, true)]
         */
 
-        [Test]
+        //[Test]
         public void SuppressKeyIfSpace_TextInTextBox_ReturnTrue([Values]Keys a)
         {
                       
