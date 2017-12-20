@@ -68,7 +68,7 @@ namespace Feature_Inspection.UnitTests
 
             viewMock.VerifyAll();
             modelMock.VerifyAll();
-
+            this is a change to test what is ignored by git
         }
         */
 
