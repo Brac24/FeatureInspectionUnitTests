@@ -87,6 +87,29 @@ namespace Feature_Inspection.UnitTests
 
         }
 
+        [Test]
+        public void OpKeyEntered_ValidOpKeyNoInspectionNoFeatures_AlertNoFeatures()
+        {
+            //Arrange
+            jobInfo.Rows.Add("386022", "15516", "150", "0");
+            viewMock.Setup(f => f.SetJobInfoView(jobInfo)).Callback(() => Console.WriteLine("SetJobInfoView Called"));
+            viewMock.Setup(foo => foo.OpKey).Returns(26266);
+            viewMock.Setup(f => f.AlertNoFeatures()).Callback(() => Console.WriteLine("No Features. AlertNoFeatures Called"));
+            viewMock.Setup(f => f.SmallInspectionPageClear()).Callback(() => Console.WriteLine("SmallInspectionPageClear Called"));
+
+            modelMock.Setup(f => f.GetInfoFromOpKeyEntry(26266)).Returns(jobInfo);//Will allow for a true ValidOpkey
+            modelMock.Setup(f => f.GetInspectionExistsOnOpKey(26266)).Returns(false);
+            modelMock.Setup(f => f.FeaturesExist(26266)).Returns(false);
+
+            //Act
+            systemUnderTest.OpKeyEntered();
+
+            //Assert
+            viewMock.Verify(f => f.SmallInspectionPageClear(), Times.Once);
+            viewMock.Verify(foo => foo.AlertNoFeatures(), Times.Once);
+
+        }
+
         
 
 
