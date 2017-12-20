@@ -28,6 +28,7 @@ namespace Feature_Inspection.UnitTests
         [SetUp]
         public void SetUp()
         {
+
             viewMock = new Mock<IInspectionView>(MockBehavior.Strict);
             modelMock = new Mock<IInspectionDataSource>(MockBehavior.Strict);
 
