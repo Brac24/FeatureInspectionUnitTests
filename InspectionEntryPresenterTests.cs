@@ -6,29 +6,43 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using NUnit.Framework;
 using Moq;
+using FeatureInspection;
+using System.Data;
 
 namespace Feature_Inspection.UnitTests
 {
-
-    
+  
 
     [TestFixture]
     public class InspectionEntryPresenterTests
     {
         private Mock<IInspectionView> viewMock;
-        private Mock<IFeaturesDataSource> modelMock;
+        private Mock<IInspectionDataSource> modelMock;
+
         private InspectionPresenter systemUnderTest;
+
+        DataTable jobInfo;
+
+        //private ModelMockInspection dataTable;
 
         [SetUp]
         public void SetUp()
         {
             viewMock = new Mock<IInspectionView>(MockBehavior.Strict);
-            modelMock = new Mock<IFeaturesDataSource>(MockBehavior.Strict);
+            modelMock = new Mock<IInspectionDataSource>(MockBehavior.Strict);
+
+            //dataTable = new ModelMockInspection();
 
             systemUnderTest = new InspectionPresenter(viewMock.Object, modelMock.Object);
 
+            jobInfo = new DataTable();
+            jobInfo.Columns.Add("Part_Number", typeof(string));
+            jobInfo.Columns.Add("Job_Number", typeof(string));
+            jobInfo.Columns.Add("Operation_Number", typeof(string));
+            jobInfo.Columns.Add("Act_Run_Qty", typeof(string));
         }
 
+        /*
         [TestCase(0,1,10)]
         [TestCase(1,2,10)]
         [TestCase(5, 6, 10)]
@@ -55,6 +69,25 @@ namespace Feature_Inspection.UnitTests
             modelMock.VerifyAll();
 
         }
+        */
+
+        [Test]
+        public void OpKeyEntered_NonValidOpKey_InvalidOpKeyProcessExecuted()
+        {
+            //Arrange
+            viewMock.Setup(foo => foo.OpKey).Returns(1);
+            modelMock.Setup(f => f.GetInfoFromOpKeyEntry(1)).Returns(jobInfo);
+            viewMock.Setup(foo => foo.InvalidOpKeyProcess()).Callback(() => Console.WriteLine("InvalidOpKey Process Called"));
+
+            //Act
+            systemUnderTest.OpKeyEntered();
+
+            //Assert
+            viewMock.Verify(foo => foo.InvalidOpKeyProcess(), Times.AtLeastOnce());
+
+        }
+
+        
 
 
         

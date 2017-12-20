@@ -1,36 +1,15 @@
+C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\obj\Debug\Feature_Inspection.UnitTests.csprojResolveAssemblyReference.cache
+C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\bin\Debug\Feature_Inspection.UnitTests.dll.config
 C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\bin\Debug\Feature_Inspection.UnitTests.dll
 C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\bin\Debug\Feature_Inspection.UnitTests.pdb
+C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\bin\Debug\Castle.Core.dll
 C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\bin\Debug\Feature_Inspection.exe
+C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\bin\Debug\Moq.dll
 C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\bin\Debug\nunit.framework.dll
 C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\bin\Debug\Feature_Inspection.pdb
-C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\obj\Debug\Feature_Inspection.UnitTests.csprojResolveAssemblyReference.cache
-C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\obj\Debug\Feature_Inspection.UnitTests.dll
-C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\obj\Debug\Feature_Inspection.UnitTests.pdb
-C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\bin\Debug\Feature_Inspection.UnitTests.dll.config
-C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\bin\Debug\nunit.framework.xml
-<<<<<<< HEAD
-C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\obj\Debug\Feature_Inspection.UnitTests.csprojResolveAssemblyReference.cache
-C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\obj\Debug\Feature_Inspection.UnitTests.dll
-C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\obj\Debug\Feature_Inspection.UnitTests.pdb
-C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\bin\Debug\Feature_Inspection.UnitTests.dll.config
-C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\bin\Debug\Feature_Inspection.UnitTests.dll
-C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\bin\Debug\Feature_Inspection.UnitTests.pdb
-C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\bin\Debug\Feature_Inspection.exe
-C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\bin\Debug\nunit.framework.dll
-C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\bin\Debug\ObjectListView.dll
-C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\bin\Debug\DataGridViewNumericUpDownElements.dll
-C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\bin\Debug\Feature_Inspection.pdb
-C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\bin\Debug\Feature_Inspection.exe.config
-C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\bin\Debug\nunit.framework.xml
-C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\bin\Debug\ObjectListView.xml
-C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\bin\Debug\DataGridViewNumericUpDownElements.pdb
-=======
-C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\bin\Debug\Castle.Core.dll
-C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\bin\Debug\Moq.dll
+C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\bin\Debug\Castle.Core.xml
 C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\bin\Debug\Moq.pdb
 C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\bin\Debug\Moq.xml
->>>>>>> 23b2a08c8d74b74490c9f2cb20ec3f9f08db6e91
-C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\bin\Debug\Castle.Core.dll
-C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\bin\Debug\Moq.dll
-C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\bin\Debug\Moq.pdb
-C:\Users\ipommer\VisualStudioProjects\Feature_Inspection.UnitTests\bin\Debug\Moq.xml
+C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\bin\Debug\nunit.framework.xml
+C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\obj\Debug\Feature_Inspection.UnitTests.dll
+C:\Users\cbracamontes\Documents\Visual Studio 2015\Projects\Feature_Inspection.UnitTests\obj\Debug\Feature_Inspection.UnitTests.pdb

@@ -6,33 +6,11 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using System.Windows.Forms;
 using Moq;
-
+using FeatureInspection;
 
 namespace Feature_Inspection.UnitTests
 {
-    [TestFixture]
-    class FeatureCreationViewTests
-    {
-        /*
-        [Test]
-        public void Event_TestingEditClicked_EventFired()
-        {
-            //Arrange
-            var view = new FeatureCreationTableMock();
-
-            var wasFired = false;
-
-            view.EditClicked += (o, e) => wasFired = true;
-
-            
-            Assert.That(wasFired, Is.True);
-
-
-        }
-        */
-    }
-
-
+   
     [TestFixture]
     class FeatureCreationPresenterTests
     {
@@ -118,7 +96,7 @@ namespace Feature_Inspection.UnitTests
         {
                       
             KeyEventArgs e = new KeyEventArgs(a);
-            sut.SuppressKeyIfWhiteSpaceChar(e);
+            //sut.SuppressKeyIfWhiteSpaceChar(e);
 
             if (char.IsWhiteSpace((char)e.KeyCode))
             {
