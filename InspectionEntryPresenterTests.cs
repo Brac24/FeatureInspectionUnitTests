@@ -58,7 +58,7 @@ namespace Feature_Inspection.UnitTests
             //viewMock.Setup(g => g.ListBoxIndex).Returns(1);  --This will force the property to return 1 regardless of what actual implementation is
 
             //viewMock.Setup(g => g.ListBoxIndex).Returns(2);  --This will force property to return 2 regradless of actual implementation in inspection presenter
-           
+           This is another test. Written from christian's computer
 
             //Act
             systemUnderTest.GotToNextPart();
