@@ -25,26 +25,79 @@ namespace Feature_Inspection.UnitTests
             mockModel = new Mock<IFeaturesDataSource>(MockBehavior.Strict);
 
             sut = new FeatureCreationPresenter(mockView.Object, mockModel.Object);
-
-            
-            
-
         }
 
         [Test]
-        public void CheckPartNumberExists_EnterValidPartNumber_ReturnsTrue()
+        public void OnEnterKeyPartNumber_ValidPartNumber_ReturnsTrue()
         {
-            string partNumber = mockView.Object.PartNumber;
+            string partNumber;
+            bool isValidPartNumber;
+            mockView.Setup(f => f.PartNumber).Returns("386022");
+            partNumber = mockView.Object.PartNumber;
+            mockView.Setup(f => f.ClearForNewPartOpSearch()).Verifiable();
+            mockView.Setup(f => f.SelectOpTextBox()).Verifiable();
+            mockModel.Setup(f => f.PartNumberExists(partNumber)).Returns(true);
+
+            isValidPartNumber = sut.OnEnterKeyPartNumber(partNumber);
+
+            Assert.IsTrue(isValidPartNumber);
+        }
+
+        [Test]
+        public void SetUpViewAfterPartEntry_EnterValidPartNumber_ReturnsTrue()
+        {
+            
+            //Arrange
             bool validPartNumber;
 
             //Property set up: mock.Setup(foo => foo.Name).Returns("bar");
-            mockView.Setup(f => f.PartNumber).Returns("123456");
-            mockView.Setup(g => g.SelectOpTextBox()).Verifiable(); //Verify this gets called
-            mockModel.Setup(f => f.PartNumberExists(partNumber)).Returns(true); //Configure to return true
+            mockView.Setup(f => f.PartNumber).Returns("386022");
+            string partNumber = mockView.Object.PartNumber;
+            mockView.Setup(g => g.SelectOpTextBox()).Verifiable(); //Verify view method gets called
+            mockModel.Setup(f => f.PartNumberExists(partNumber)).Returns(true); //Configure model method to return true
 
-            validPartNumber = sut.CheckPartNumberExists(partNumber); //Method under test
+            //Act
+            validPartNumber = sut.SetUpViewAfterPartEntry(partNumber); //Method under test
 
+
+            //Assert
             Assert.IsTrue(validPartNumber);
+        }
+
+        [Test]
+        public void SetUpViewAfterPartEntry_EnterInvalidPartNumber_ReturnFalse()
+        {
+            //Arrange
+            bool validPartNumber;
+
+            //Property set up: mock.Setup(foo => foo.Name).Returns("bar");
+            mockView.Setup(f => f.PartNumber).Returns("----");
+            string partNumber = mockView.Object.PartNumber;
+            mockView.Setup(g => g.ClearAfterPartNumberEntry("Part Number does not exist")).Verifiable(); //Verify view method gets called
+            mockModel.Setup(f => f.PartNumberExists(partNumber)).Returns(false); //Configure model method to return true
+
+            //Act
+            validPartNumber = sut.SetUpViewAfterPartEntry(partNumber); //Method under test
+
+            Assert.IsFalse(validPartNumber);
+        }
+
+        [Test]
+        public void SetUpViewAfterPartEntry_EnterEmptyString_ReturnFalse()
+        {
+            //Arrange
+            bool validPartNumber;
+
+            //Property set up: mock.Setup(foo => foo.Name).Returns("bar");
+            mockView.Setup(f => f.PartNumber).Returns("");
+            string partNumber = mockView.Object.PartNumber;
+            mockView.Setup(g => g.ClearAfterPartNumberEntry("Please Enter a Part Number")).Verifiable(); //Verify view method gets called
+            mockModel.Setup(f => f.PartNumberExists(partNumber)).Returns(false); //Configure model method to return true
+
+            //Act
+            validPartNumber = sut.SetUpViewAfterPartEntry(partNumber); //Method under test
+
+            Assert.IsFalse(validPartNumber);
         }
 
         //[Test]
@@ -91,7 +144,7 @@ namespace Feature_Inspection.UnitTests
 
             sut = new FeatureCreationPresenter(mockView.Object, mockModel.Object);
 
-            sut.CheckPartNumberExists(partNumber);
+            sut.SetUpViewAfterPartEntry(partNumber);
 
            
             mockModel.VerifyAll();
