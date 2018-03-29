@@ -25,6 +25,15 @@ namespace Feature_Inspection.UnitTests
 
         //private ModelMockInspection dataTable;
 
+
+        //Used to help with getting the a datatable object based on the part and opkey
+        private DataTable GetInspectionTestDataByOpKeyAndPart(int part, int opkey)
+        {
+            var dataClass = new InspectionModel();
+
+            return dataClass.GetFeaturesOnPartIndex(part, opkey);
+        }
+
         [SetUp]
         public void SetUp()
         {
@@ -93,7 +102,7 @@ namespace Feature_Inspection.UnitTests
         {
             //Arrange
             jobInfo.Rows.Add("386022", "15516", "150", "0");
-            viewMock.Setup(f => f.SetJobInfoView(jobInfo)).Callback(() => Console.WriteLine("SetJobInfoView Called"));
+            //viewMock.Setup(f => f.SetJobInfoView(jobInfo)).Callback(() => Console.WriteLine("SetJobInfoView Called"));
             viewMock.Setup(foo => foo.OpKey).Returns(26266);
             viewMock.Setup(f => f.AlertNoFeatures()).Callback(() => Console.WriteLine("No Features. AlertNoFeatures Called"));
             viewMock.Setup(f => f.SmallInspectionPageClear()).Callback(() => Console.WriteLine("SmallInspectionPageClear Called"));
@@ -111,11 +120,9 @@ namespace Feature_Inspection.UnitTests
 
         }
 
-        
+        //[Test]
+        //public void OpKeyEntered_ValidOpKeyValidInspection_
 
-
-        
-        
 
 
     }
