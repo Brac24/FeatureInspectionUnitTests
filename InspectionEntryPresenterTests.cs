@@ -81,7 +81,7 @@ namespace Feature_Inspection.UnitTests
         }
         */
 
-        [Test]
+        //[Test]
         public void OpKeyEntered_NonValidOpKey_InvalidOpKeyProcessExecuted()
         {
             //Arrange
@@ -97,7 +97,7 @@ namespace Feature_Inspection.UnitTests
 
         }
 
-        [Test]
+        //[Test]
         public void OpKeyEntered_ValidOpKeyNoInspectionNoFeatures_AlertNoFeatures()
         {
             //Arrange

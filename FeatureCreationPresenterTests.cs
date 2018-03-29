@@ -25,7 +25,26 @@ namespace Feature_Inspection.UnitTests
             mockModel = new Mock<IFeaturesDataSource>(MockBehavior.Strict);
 
             sut = new FeatureCreationPresenter(mockView.Object, mockModel.Object);
-           
+
+            
+            
+
+        }
+
+        [Test]
+        public void CheckPartNumberExists_EnterValidPartNumber_ReturnsTrue()
+        {
+            string partNumber = mockView.Object.PartNumber;
+            bool validPartNumber;
+
+            //Property set up: mock.Setup(foo => foo.Name).Returns("bar");
+            mockView.Setup(f => f.PartNumber).Returns("123456");
+            mockView.Setup(g => g.SelectOpTextBox()).Verifiable(); //Verify this gets called
+            mockModel.Setup(f => f.PartNumberExists(partNumber)).Returns(true); //Configure to return true
+
+            validPartNumber = sut.CheckPartNumberExists(partNumber); //Method under test
+
+            Assert.IsTrue(validPartNumber);
         }
 
         //[Test]
