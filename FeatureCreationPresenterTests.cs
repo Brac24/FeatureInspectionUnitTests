@@ -7,17 +7,18 @@ using NUnit.Framework;
 using System.Windows.Forms;
 using Moq;
 using FeatureInspection;
+using TestStack.White;
 
 namespace Feature_Inspection.UnitTests
 {
-   
+
     [TestFixture]
     class FeatureCreationPresenterTests
     {
         private Mock<IFeatureCreationView> mockView;
         private Mock<IFeaturesDataSource> mockModel;
         private FeatureCreationPresenter sut;
-        
+
         [SetUp]
         public void SetUp()
         {
@@ -30,10 +31,8 @@ namespace Feature_Inspection.UnitTests
         [Test]
         public void OnEnterKeyPartNumber_ValidPartNumber_ReturnsTrue()
         {
-            string partNumber;
+            string partNumber = "386022";
             bool isValidPartNumber;
-            mockView.Setup(f => f.PartNumber).Returns("386022");
-            partNumber = mockView.Object.PartNumber;
             mockView.Setup(f => f.ClearForNewPartOpSearch()).Verifiable();
             mockView.Setup(f => f.SelectOpTextBox()).Verifiable();
             mockModel.Setup(f => f.PartNumberExists(partNumber)).Returns(true);
@@ -46,7 +45,7 @@ namespace Feature_Inspection.UnitTests
         [Test]
         public void SetUpViewAfterPartEntry_EnterValidPartNumber_ReturnsTrue()
         {
-            
+
             //Arrange
             bool validPartNumber;
 
@@ -91,8 +90,10 @@ namespace Feature_Inspection.UnitTests
             //Property set up: mock.Setup(foo => foo.Name).Returns("bar");
             mockView.Setup(f => f.PartNumber).Returns("");
             string partNumber = mockView.Object.PartNumber;
-            mockView.Setup(g => g.ClearAfterPartNumberEntry("Please Enter a Part Number")).Verifiable(); //Verify view method gets called
-            mockModel.Setup(f => f.PartNumberExists(partNumber)).Returns(false); //Configure model method to return true
+			mockView.Setup(f => f.ResetPartOpAndFeatureHeader()).Verifiable(); //Clear UI elements
+			mockView.Setup(f => f.ShowPopUpWindow("PLEASE ENTER A PART NUMBER")).Verifiable();
+			mockView.Setup(f => f.SetPartTextBoxReadOnly()).Verifiable();	
+			mockModel.Setup(f => f.PartNumberExists(partNumber)).Returns(false); //Configure model method to return true
 
             //Act
             validPartNumber = sut.SetUpViewAfterPartEntry(partNumber); //Method under test
@@ -100,20 +101,32 @@ namespace Feature_Inspection.UnitTests
             Assert.IsFalse(validPartNumber);
         }
 
+        //------Tests for Methods Inside OnEnterKeyOperation()
+
+
+        [Test]
+        public void InitializeFeatureGridView_ValidPartAndOpNumber_ReturnTrue()
+        {
+
+        }
+
+
+
+
         //[Test]
         public void Ctor_PassingInModelAndView_ObjectsNotNull()
         {
-                    
+
             //Assert
             Assert.That(sut, Is.Not.Null);
-                       
+
         }
 
         //[Test]
         public void Ctor_PassingInModelAndView_ModelAndViewInstantiated()
         {
             mockView.VerifyAll();
-            mockModel.VerifyAll();        
+            mockModel.VerifyAll();
         }
 
         //[Test]
@@ -121,24 +134,24 @@ namespace Feature_Inspection.UnitTests
         {
             bool tabPressed = false;
 
-            
+
             //KeyEventArgs e = new KeyEventArgs(Keys.Tab);
 
-           //tabPressed = sut.OnEnterKeyInitializeDataGridView();
+            //tabPressed = sut.OnEnterKeyInitializeDataGridView();
 
             Assert.That(tabPressed, Is.True);
         }
-        
+
         //[Test]
         public void checkPartNumberExists_PartExists_FocusOpBox()
         {
-            
+
             string partNumber = "1234";
             var opTextBox = new TextBox();
             opTextBox.Enabled = true;
             opTextBox.Visible = true;
 
-            
+
             mockView.Setup(p => p.FeatureOpTextBox).Returns(opTextBox);
             mockModel.Setup(x => x.PartNumberExists(partNumber)).Returns(true);
 
@@ -146,15 +159,15 @@ namespace Feature_Inspection.UnitTests
 
             sut.SetUpViewAfterPartEntry(partNumber);
 
-           
+
             mockModel.VerifyAll();
             mockView.VerifyAll();
 
-            
-           Assert.That(opTextBox.Focused, Is.True);
+
+            Assert.That(opTextBox.Focused, Is.True);
 
         }
-        
+
 
         /*
         [TestCase(Keys.Space, true)]
@@ -166,7 +179,7 @@ namespace Feature_Inspection.UnitTests
         //[Test]
         public void SuppressKeyIfSpace_TextInTextBox_ReturnTrue([Values]Keys a)
         {
-                      
+
             KeyEventArgs e = new KeyEventArgs(a);
             //sut.SuppressKeyIfWhiteSpaceChar(e);
 
@@ -175,18 +188,33 @@ namespace Feature_Inspection.UnitTests
                 Assert.That(e.SuppressKeyPress, Is.EqualTo(true));
             }
             //else
-              //  Assert.That(e.SuppressKeyPress, Is.EqualTo(false));
-            
+            //  Assert.That(e.SuppressKeyPress, Is.EqualTo(false));
+
         }
 
 
 
-       
 
 
-        
 
-       
+
+
+
 
     }
+
+	[TestFixture]
+	public class UITests
+	{
+		[Test]
+		public void MyFirstUITest()
+		{
+			var applicationDirectory = TestContext.CurrentContext.TestDirectory;
+			TestStack.White.Application application = TestStack.White.Application.Launch("C:/Users/cbracamontes/Documents/Visual Studio 2015/Projects/FeatureInspection/Main_Proj/bin/Debug/Feature_Inspection.exe");
+
+		}
+
+	}
+
+	
 }
