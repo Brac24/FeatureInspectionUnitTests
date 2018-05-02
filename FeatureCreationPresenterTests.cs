@@ -48,7 +48,7 @@ namespace Feature_Inspection.UnitTests
 
             //Arrange
             bool validPartNumber;
-
+			
             //Property set up: mock.Setup(foo => foo.Name).Returns("bar");
             mockView.Setup(f => f.PartNumber).Returns("386022");
             string partNumber = mockView.Object.PartNumber;
