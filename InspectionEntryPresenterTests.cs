@@ -25,6 +25,15 @@ namespace Feature_Inspection.UnitTests
 
         //private ModelMockInspection dataTable;
 
+
+        //Used to help with getting the a datatable object based on the part and opkey
+        private DataTable GetInspectionTestDataByOpKeyAndPart(int part, int opkey)
+        {
+            var dataClass = new InspectionModel();
+
+            return dataClass.GetFeaturesOnPartIndex(part, opkey);
+        }
+
         [SetUp]
         public void SetUp()
         {
@@ -72,7 +81,7 @@ namespace Feature_Inspection.UnitTests
         }
         */
 
-        [Test]
+        //[Test]
         public void OpKeyEntered_NonValidOpKey_InvalidOpKeyProcessExecuted()
         {
             //Arrange
@@ -88,7 +97,7 @@ namespace Feature_Inspection.UnitTests
 
         }
 
-        [Test]
+        //[Test]
         public void OpKeyEntered_ValidOpKeyNoInspectionNoFeatures_AlertNoFeatures()
         {
             //Arrange
@@ -111,11 +120,9 @@ namespace Feature_Inspection.UnitTests
 
         }
 
-        
+        //[Test]
+        //public void OpKeyEntered_ValidOpKeyValidInspection_
 
-
-        
-        
 
 
     }
