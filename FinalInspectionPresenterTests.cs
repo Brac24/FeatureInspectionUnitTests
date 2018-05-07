@@ -80,7 +80,9 @@ namespace Feature_Inspection.UnitTests
 			_modelImpl = new FinalInspectionModel(); //This essentially makes it an integration test because we call the server 
 			mockModel.Setup(f => f.JobNumberExists(jobNumber)).Returns(1);
 			mockModel.Setup(f => f.GetJobInfo(jobNumber)).Returns(_modelImpl.GetJobInfo(jobNumber)).Verifiable(); //Accessing DB
+			mockModel.Setup(f => f.GetAllOperationsOnJob(jobNumber)).Returns(new DataTable());
 			mockView.Setup(f => f.SetJobInfo(mockModel.Object.GetJobInfo(jobNumber))).Verifiable();
+			mockView.Setup(f => f.SetOperationButtons(new List<Operation>()));
 
 
 
@@ -93,7 +95,6 @@ namespace Feature_Inspection.UnitTests
 			Assert.AreEqual(jobNumber, sut.JobNumber);
 
 		}
-
 
 		[Test]
 		public void SetJobProperty_InvalidJobNumber_JobNumberPropertyNotSet()
@@ -137,7 +138,6 @@ namespace Feature_Inspection.UnitTests
 			Assert.IsEmpty(sut.JobNumber);
 		}
 
-		
 		[Test]
 		public void SetJobOperationButtons_ValidNumOfOperations_CalledSetOpButton_NumOfOperationsTimes()
 		{
@@ -200,7 +200,7 @@ namespace Feature_Inspection.UnitTests
 		[TestCase(1)]
 		[TestCase(10)]
 		[TestCase(30)]
-		public void GetOperationList_DataTableWith1InspectionNotComplete_Returns(int numOfOps)
+		public void GetOperationList_DataTableWithMixedInspectionCompleteAndNotComplete_ReturnsCorrectList(int numOfOps)
 		{
 			//Arrange
 			DataTable dt = new DataTable();
