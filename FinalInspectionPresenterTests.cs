@@ -49,9 +49,11 @@ namespace Feature_Inspection.UnitTests
 			mockModel.Setup(f => f.GetAllOperationsOnJob(jobNumber)).Returns(new DataTable());
 			mockView.Setup(f => f.SetJobInfo(jobInfo));
 			mockView.Setup(f => f.SetOperationButtons(new List<Operation>()));
-	
-			//Act
-			sut.jobTextBoxKeyDown(jobNumber);
+            mockView.Setup(f => f.AddNCRs(new List<string>()));
+            mockModel.Setup(f => f.GetNCRList(jobNumber)).Returns(new List<string>());
+
+            //Act
+            sut.jobTextBoxKeyDown(jobNumber);
 
 			//Assert
 			Assert.AreEqual(jobNumber, sut.JobNumber);
@@ -83,11 +85,13 @@ namespace Feature_Inspection.UnitTests
 			mockModel.Setup(f => f.GetAllOperationsOnJob(jobNumber)).Returns(new DataTable());
 			mockView.Setup(f => f.SetJobInfo(mockModel.Object.GetJobInfo(jobNumber))).Verifiable();
 			mockView.Setup(f => f.SetOperationButtons(new List<Operation>()));
+            mockView.Setup(f => f.AddNCRs(new List<string>()));
+            mockModel.Setup(f => f.GetNCRList(jobNumber)).Returns(new List<string>());
 
 
 
-			//Act 
-			sut.jobTextBoxKeyDown(jobNumber);
+            //Act 
+            sut.jobTextBoxKeyDown(jobNumber);
 			mockModel.Verify(f => f.GetJobInfo(jobNumber));
 			mockView.Verify(f => f.SetJobInfo(mockModel.Object.GetJobInfo(jobNumber)));
 
