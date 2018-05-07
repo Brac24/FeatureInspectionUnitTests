@@ -72,7 +72,7 @@ namespace Feature_Inspection.UnitTests
 
             sut = new FeatureCreationPresenter(mockView.Object, mockModel.Object);
 
-            sut.CheckPartNumberExists(partNumber);
+            //sut.CheckPartNumberExists(partNumber);
 
            
             mockModel.VerifyAll();
