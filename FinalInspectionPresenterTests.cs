@@ -49,11 +49,12 @@ namespace Feature_Inspection.UnitTests
 			mockModel.Setup(f => f.GetAllOperationsOnJob(jobNumber)).Returns(new DataTable());
 			mockView.Setup(f => f.SetJobInfo(jobInfo));
 			mockView.Setup(f => f.SetOperationButtons(new List<Operation>()));
-            mockView.Setup(f => f.AddNCRs(new List<string>()));
-            mockModel.Setup(f => f.GetNCRList(jobNumber)).Returns(new List<string>());
+			mockView.Setup(f => f.AddNCRs(new List<string>()));
+			mockModel.Setup(f => f.GetNCRList(jobNumber)).Returns(new List<string>());
+			mockModel.Setup(f => f.GetOperationsNotBeingInspectedThatHaveFeatures(jobNumber)).Returns(new List<string>());
 
-            //Act
-            sut.jobTextBoxKeyDown(jobNumber);
+			//Act
+			sut.jobTextBoxKeyDown(jobNumber);
 
 			//Assert
 			Assert.AreEqual(jobNumber, sut.JobNumber);
@@ -85,13 +86,14 @@ namespace Feature_Inspection.UnitTests
 			mockModel.Setup(f => f.GetAllOperationsOnJob(jobNumber)).Returns(new DataTable());
 			mockView.Setup(f => f.SetJobInfo(mockModel.Object.GetJobInfo(jobNumber))).Verifiable();
 			mockView.Setup(f => f.SetOperationButtons(new List<Operation>()));
-            mockView.Setup(f => f.AddNCRs(new List<string>()));
-            mockModel.Setup(f => f.GetNCRList(jobNumber)).Returns(new List<string>());
+			mockView.Setup(f => f.AddNCRs(new List<string>()));
+			mockModel.Setup(f => f.GetNCRList(jobNumber)).Returns(new List<string>());
+			mockModel.Setup(f => f.GetOperationsNotBeingInspectedThatHaveFeatures(jobNumber)).Returns(new List<string>());
 
 
 
-            //Act 
-            sut.jobTextBoxKeyDown(jobNumber);
+			//Act 
+			sut.jobTextBoxKeyDown(jobNumber);
 			mockModel.Verify(f => f.GetJobInfo(jobNumber));
 			mockView.Verify(f => f.SetJobInfo(mockModel.Object.GetJobInfo(jobNumber)));
 
@@ -146,7 +148,7 @@ namespace Feature_Inspection.UnitTests
 		public void SetJobOperationButtons_ValidNumOfOperations_CalledSetOpButton_NumOfOperationsTimes()
 		{
 			Operation op = new Operation();
-			
+
 			//Arrange
 			mockModel.Setup(f => f.GetAllOperationsOnJob(jobNumber)).Returns(jobInfo);
 			//mockView.Setup(f => f.SetOperationButton(opNumber, System.Drawing.Color.))
@@ -164,10 +166,10 @@ namespace Feature_Inspection.UnitTests
 			List<Operation> actualList = new List<Operation>();
 			List<Operation> expectedList = new List<Operation>();
 
-			expectedList = ManualListOfOps_Returns2Green_22Gray();	
+			expectedList = ManualListOfOps_Returns2Green_22Gray();
 
 			mockModel.Setup(f => f.GetAllOperationsOnJob(jobNumber)).Returns(modelImp.GetAllOperationsOnJob(jobNumber));
-
+			mockModel.Setup(f => f.GetOperationsNotBeingInspectedThatHaveFeatures(jobNumber)).Returns(modelImp.GetOperationsNotBeingInspectedThatHaveFeatures(jobNumber));
 			//Act
 			actualList = sut.GetOperationList();
 
@@ -184,9 +186,9 @@ namespace Feature_Inspection.UnitTests
 			string[] ops = new string[] {"10","15", "16", "25", "40", "60", "70", "80", "90", "93", "97", "100",
 										 "110", "120", "130", "135", "140", "150", "160", "170", "180", "190", "200", "210"};
 
-			for (int i=1; i<=ops.Count(); i++)
+			for (int i = 1; i <= ops.Count(); i++)
 			{
-				if(i == 12 || i ==16)
+				if (i == 12 || i == 16)
 				{
 					list.Add(new Operation(ops[i - 1], System.Drawing.Color.Green));
 				}
@@ -194,11 +196,11 @@ namespace Feature_Inspection.UnitTests
 				{
 					list.Add(new Operation(ops[i - 1], System.Drawing.Color.Gray));
 				}
-				
+
 			}
 
 			return list;
-			
+
 		}
 
 		[TestCase(1)]
@@ -209,11 +211,13 @@ namespace Feature_Inspection.UnitTests
 			//Arrange
 			DataTable dt = new DataTable();
 			List<Operation> actualList = new List<Operation>();
+			List<string> listOfOpsWithFeatures = new List<string>();
 			jobNumber = "adfsdf";
 			sut.JobNumber = jobNumber;
 			dt = HelperMethod_GetAllOperationsOnJob_DataTableMakerWithSomeNullValuesAndInspectionComplete_Random(numOfOps);
-
+			listOfOpsWithFeatures = SetHasFeaturesToEveryOtherGrayOpAndColoredOps();
 			mockModel.Setup(f => f.GetAllOperationsOnJob(jobNumber)).Returns(dt);
+			mockModel.Setup(f => f.GetOperationsNotBeingInspectedThatHaveFeatures(jobNumber)).Returns(listOfOpsWithFeatures);
 
 			//Act
 			actualList = sut.GetOperationList();
@@ -221,6 +225,33 @@ namespace Feature_Inspection.UnitTests
 			//Assert
 			Assert.That(List.Map(actualList).Property("Color"), Is.EqualTo(List.Map(expectedOperationList).Property("Color")));
 			Assert.That(List.Map(actualList).Property("OpNumber"), Is.EqualTo(List.Map(expectedOperationList).Property("OpNumber")));
+			Assert.That(List.Map(actualList).Property("HasFeatures"), Is.EqualTo(List.Map(expectedOperationList).Property("HasFeatures")));
+		}
+
+		private List<string> SetHasFeaturesToEveryOtherGrayOpAndColoredOps()
+		{
+			bool hasFeatures = true;
+			var listOfOps = new List<string>();
+			foreach (var op in expectedOperationList)
+			{
+				if (op.Color == System.Drawing.Color.Red || op.Color == System.Drawing.Color.Green)
+				{
+					op.HasFeatures = true;
+					//listOfOps.Add(op.OpNumber);
+				}
+				else if (hasFeatures)
+				{
+					listOfOps.Add(op.OpNumber);
+					op.HasFeatures = true;	
+				}
+				else
+				{
+					op.HasFeatures = false;
+				}
+				hasFeatures = !hasFeatures;
+			}
+
+			return listOfOps;
 		}
 
 		/// <summary>
@@ -252,10 +283,10 @@ namespace Feature_Inspection.UnitTests
 			allOps.Columns.Add("LotSerialized", typeof(string));
 
 			//Create rows for DataTable.
-			for (int i=0; i<numberOfOperations; i++)
+			for (int i = 0; i < numberOfOperations; i++)
 			{
 				bool nullOpKey = (r.Next(100) <= 60) ? true : false; //null Op_Key1 approx. 60% of the time
-				bool inspecComplete = (r.Next(100) <= 30) ? true : false; 
+				bool inspecComplete = (r.Next(100) <= 30) ? true : false;
 				int op = r.Next(startRange, maxValue); //Generate random operation number
 				DataRow newRow = allOps.NewRow();
 
@@ -278,7 +309,7 @@ namespace Feature_Inspection.UnitTests
 					expectedOperationList.Add(new Operation(op.ToString(), (inspecComplete) ? System.Drawing.Color.Green : System.Drawing.Color.Red));
 				}
 
-				
+
 
 				startRange += offset;
 				maxValue += offset;
@@ -288,7 +319,26 @@ namespace Feature_Inspection.UnitTests
 			return allOps;
 		}
 
+		[TestCase(60)]
+		public void GetOperationList_ListOfOpsWithFeaturesNotInOrder_SetHasFeaturesCorrectly(int numOfOps)
+		{
+			//Arrange
+			DataTable dt = new DataTable();
+			List<Operation> actualList = new List<Operation>();
+			List<string> listOfOpsWithFeatures = new List<string>();
+			jobNumber = "adfsdf";
+			sut.JobNumber = jobNumber;
+			dt = HelperMethod_GetAllOperationsOnJob_DataTableMakerWithSomeNullValuesAndInspectionComplete_Random(numOfOps);
+			listOfOpsWithFeatures = SetHasFeaturesToEveryOtherGrayOpAndColoredOps();
+			listOfOpsWithFeatures.Reverse(); //Reverse the order of ops
+			mockModel.Setup(f => f.GetAllOperationsOnJob(jobNumber)).Returns(dt);
+			mockModel.Setup(f => f.GetOperationsNotBeingInspectedThatHaveFeatures(jobNumber)).Returns(listOfOpsWithFeatures);
 
+			//Act
+			actualList = sut.GetOperationList();
 
+			//Assert
+			Assert.That(List.Map(actualList).Property("HasFeatures"), Is.EqualTo(List.Map(expectedOperationList).Property("HasFeatures")));
+		}
 	}
 }
