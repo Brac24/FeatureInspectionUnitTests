@@ -52,6 +52,7 @@ namespace Feature_Inspection.UnitTests
 			mockView.Setup(f => f.AddNCRs(new List<string>()));
 			mockModel.Setup(f => f.GetNCRList(jobNumber)).Returns(new List<string>());
 			mockModel.Setup(f => f.GetOperationsNotBeingInspectedThatHaveFeatures(jobNumber)).Returns(new List<string>());
+			mockView.Setup(f => f.DisplayTable());
 
 			//Act
 			sut.jobTextBoxKeyDown(jobNumber);
@@ -89,6 +90,7 @@ namespace Feature_Inspection.UnitTests
 			mockView.Setup(f => f.AddNCRs(new List<string>()));
 			mockModel.Setup(f => f.GetNCRList(jobNumber)).Returns(new List<string>());
 			mockModel.Setup(f => f.GetOperationsNotBeingInspectedThatHaveFeatures(jobNumber)).Returns(new List<string>());
+			mockView.Setup(f => f.DisplayTable());
 
 
 
@@ -190,7 +192,7 @@ namespace Feature_Inspection.UnitTests
 			{
 				if (i == 12 || i == 16)
 				{
-					list.Add(new Operation(ops[i - 1], System.Drawing.Color.Green));
+					list.Add(new Operation(ops[i - 1], System.Drawing.Color.SeaGreen));
 				}
 				else
 				{
@@ -234,7 +236,7 @@ namespace Feature_Inspection.UnitTests
 			var listOfOps = new List<string>();
 			foreach (var op in expectedOperationList)
 			{
-				if (op.Color == System.Drawing.Color.Red || op.Color == System.Drawing.Color.Green)
+				if (op.Color == System.Drawing.Color.FromArgb(151,70,44) || op.Color == System.Drawing.Color.SeaGreen)
 				{
 					op.HasFeatures = true;
 					//listOfOps.Add(op.OpNumber);
@@ -242,11 +244,15 @@ namespace Feature_Inspection.UnitTests
 				else if (hasFeatures)
 				{
 					listOfOps.Add(op.OpNumber);
-					op.HasFeatures = true;	
+					op.HasFeatures = true;
+					op.Color = System.Drawing.Color.Red;
 				}
 				else
 				{
+
 					op.HasFeatures = false;
+					op.Color = System.Drawing.Color.Gray;
+
 				}
 				hasFeatures = !hasFeatures;
 			}
@@ -285,7 +291,7 @@ namespace Feature_Inspection.UnitTests
 			//Create rows for DataTable.
 			for (int i = 0; i < numberOfOperations; i++)
 			{
-				bool nullOpKey = (r.Next(100) <= 60) ? true : false; //null Op_Key1 approx. 60% of the time
+				bool nullOpKey = (r.Next(100) <= 60) ? true : false; //null Op_Key1(Inspection.Op_Key) approx. 60% of the time
 				bool inspecComplete = (r.Next(100) <= 30) ? true : false;
 				int op = r.Next(startRange, maxValue); //Generate random operation number
 				DataRow newRow = allOps.NewRow();
@@ -306,7 +312,7 @@ namespace Feature_Inspection.UnitTests
 					newRow["Operation_Number"] = op.ToString();
 					allOps.Rows.Add(newRow);
 					//Set the expected list global variable
-					expectedOperationList.Add(new Operation(op.ToString(), (inspecComplete) ? System.Drawing.Color.Green : System.Drawing.Color.Red));
+					expectedOperationList.Add(new Operation(op.ToString(), (inspecComplete) ? System.Drawing.Color.SeaGreen : System.Drawing.Color.FromArgb(151,70,44)));
 				}
 
 
