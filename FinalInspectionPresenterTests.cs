@@ -390,5 +390,19 @@ namespace Feature_Inspection.UnitTests
 
 			return percentList;
 		}
+
+		[TestCase(90.01)]
+		[TestCase(99.999)]
+		[TestCase(92.4881131)]
+		public void GetColorBasedOnPercentValue_ValuesAbove90PercentAndLessThan100_ShouldReturnOnlyGreen(double percent)
+		{
+			decimal percentDec = (decimal)percent / 100;
+
+			//Act
+			System.Drawing.Color color = sut.GetColorBasedOnPercentValue(percentDec);
+
+			//Assert
+			Assert.That(color, Is.EqualTo(System.Drawing.Color.SeaGreen));
+		}
 	}
 }
