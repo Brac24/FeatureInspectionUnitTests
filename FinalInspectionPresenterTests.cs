@@ -356,5 +356,39 @@ namespace Feature_Inspection.UnitTests
 			//Assert
 			Assert.That(List.Map(actualList).Property("HasFeatures"), Is.EqualTo(List.Map(expectedOperationList).Property("HasFeatures")));
 		}
+
+		[Test]
+		public void SetMarShaftColorBasedOnPercentage_Point1Percent_13Percent_89Point99Percent_91Percent_ViewMethodGetsCalledWithCorrectIndexAndColor()
+		{
+			//Arrange
+			List<decimal> inputList = GetPercentageList(new decimal[] { (decimal).1, 13, (decimal)89.99, (decimal)91 });
+
+			mockView.Setup(f => f.SetMarShaftDataRowColor(0, System.Drawing.Color.Red));
+			mockView.Setup(f => f.SetMarShaftDataRowColor(1, System.Drawing.Color.Red));
+			mockView.Setup(f => f.SetMarShaftDataRowColor(2, System.Drawing.Color.FromArgb(151, 44, 70)));
+			mockView.Setup(f => f.SetMarShaftDataRowColor(3, System.Drawing.Color.SeaGreen));
+
+			//Act
+			sut.SetMarShaftDataColorBasedOnPercentage(inputList);
+
+			//Assert
+			mockView.Verify(f => f.SetMarShaftDataRowColor(0, System.Drawing.Color.Red), Times.AtMostOnce());
+			mockView.Verify(f => f.SetMarShaftDataRowColor(1, System.Drawing.Color.Red), Times.AtMostOnce());
+			mockView.Verify(f => f.SetMarShaftDataRowColor(2, System.Drawing.Color.FromArgb(151, 44, 70)), Times.AtMostOnce());
+			mockView.Verify(f => f.SetMarShaftDataRowColor(3, System.Drawing.Color.SeaGreen), Times.AtMostOnce());
+
+		}
+
+		private List<decimal> GetPercentageList(decimal[] percentArray)
+		{
+			List<decimal> percentList = new List<decimal>();
+
+			for (int i=0; i<percentArray.Length; i++)
+			{
+				percentList.Add(percentArray[i]/100);
+			}
+
+			return percentList;
+		}
 	}
 }
