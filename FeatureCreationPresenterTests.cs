@@ -71,6 +71,8 @@ namespace Feature_Inspection.UnitTests
 
             //Property set up: mock.Setup(foo => foo.Name).Returns("bar");
             mockView.Setup(f => f.PartNumber).Returns("----");
+			mockView.Setup(f => f.OperationNumber).Returns(" ");
+			mockView.Setup(f => f.ResetPartOpAndFeatureHeader());
             string partNumber = mockView.Object.PartNumber;
             mockView.Setup(g => g.ClearAfterPartNumberEntry("Part Number does not exist")).Verifiable(); //Verify view method gets called
             mockModel.Setup(f => f.PartNumberExists(partNumber)).Returns(false); //Configure model method to return true

@@ -29,7 +29,7 @@ namespace Feature_Inspection.UnitTests
 		public void SetUp()
 		{
 
-			mockView = new Mock<IFinalInspection>(MockBehavior.Strict);
+			mockView = new Mock<IFinalInspection>(MockBehavior.Strict); 
 			mockModel = new Mock<IFinalInspectionModel>(MockBehavior.Strict);
 
 			sut = new FinalInspectionPresenter(mockView.Object, mockModel.Object);
@@ -44,6 +44,7 @@ namespace Feature_Inspection.UnitTests
 		public void jobTextBoxKeyDown_ValidJobNumber_SetJobProperty()
 		{
 			//Arrange
+			mockModel.Setup(f => f.GetMarShaftBluePrintInspectedData(jobNumber)).Returns(new DataTable());
 			mockModel.Setup(f => f.JobNumberExists(jobNumber)).Returns(1);
 			mockModel.Setup(f => f.GetJobInfo(jobNumber)).Returns(jobInfo); //Returns empty table be do not care for this test
 			mockModel.Setup(f => f.GetAllOperationsOnJob(jobNumber)).Returns(new DataTable());
@@ -53,6 +54,8 @@ namespace Feature_Inspection.UnitTests
 			mockModel.Setup(f => f.GetNCRList(jobNumber)).Returns(new List<string>());
 			mockModel.Setup(f => f.GetOperationsNotBeingInspectedThatHaveFeatures(jobNumber)).Returns(new List<string>());
 			mockView.Setup(f => f.DisplayTable());
+			mockView.Setup(f => f.SetMarShaftData(mockModel.Object.GetMarShaftBluePrintInspectedData(jobNumber)));
+
 
 			//Act
 			sut.jobTextBoxKeyDown(jobNumber);
@@ -85,12 +88,15 @@ namespace Feature_Inspection.UnitTests
 			mockModel.Setup(f => f.JobNumberExists(jobNumber)).Returns(1);
 			mockModel.Setup(f => f.GetJobInfo(jobNumber)).Returns(_modelImpl.GetJobInfo(jobNumber)).Verifiable(); //Accessing DB
 			mockModel.Setup(f => f.GetAllOperationsOnJob(jobNumber)).Returns(new DataTable());
+		    mockModel.Setup(f => f.GetMarShaftBluePrintInspectedData(jobNumber)).Returns(new DataTable());
 			mockView.Setup(f => f.SetJobInfo(mockModel.Object.GetJobInfo(jobNumber))).Verifiable();
 			mockView.Setup(f => f.SetOperationButtons(new List<Operation>()));
 			mockView.Setup(f => f.AddNCRs(new List<string>()));
+			mockView.Setup(f => f.SetMarShaftData(mockModel.Object.GetMarShaftBluePrintInspectedData(jobNumber)));
 			mockModel.Setup(f => f.GetNCRList(jobNumber)).Returns(new List<string>());
 			mockModel.Setup(f => f.GetOperationsNotBeingInspectedThatHaveFeatures(jobNumber)).Returns(new List<string>());
 			mockView.Setup(f => f.DisplayTable());
+			
 
 
 
@@ -193,6 +199,10 @@ namespace Feature_Inspection.UnitTests
 				if (i == 12 || i == 16)
 				{
 					list.Add(new Operation(ops[i - 1], System.Drawing.Color.SeaGreen));
+				}
+				else if(i == 10)// 93
+				{
+					list.Add(new Operation(ops[i - 1], System.Drawing.Color.FromArgb(151,70,44)));
 				}
 				else
 				{
